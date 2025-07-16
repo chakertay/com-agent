@@ -20,7 +20,7 @@ def header_footer(canvas, doc):
     # Header
     canvas.setFont('Helvetica-Bold', 10)
     canvas.setFillColor(colors.HexColor("#2E86AB"))
-    canvas.drawString(72, height - 40, "SIRA - Rapport d'Évaluation Professionnelle")
+    canvas.drawString(72, height - 40, "SIRA")
 
     # Footer
     canvas.setFont('Helvetica', 9)
@@ -94,11 +94,11 @@ def generate_assessment_report(cv_analysis: dict, qa_pairs: list, summary: str, 
         story = []
 
         # ========== Title ==========
-        story.append(Paragraph("Rapport d'Évaluation Professionnelle", title_style))
+        story.append(Paragraph("Bilan Sira", title_style))
         story.append(Spacer(1, 12))
         story.append(Paragraph(f"Généré le : {datetime.now().strftime('%d %B %Y')}", body_style))
         story.append(Spacer(1, 24))
-
+        """
         # ========== CV Analysis ==========
         story.append(Paragraph("Aperçu de l'Analyse du CV", heading_style))
 
@@ -116,7 +116,7 @@ def generate_assessment_report(cv_analysis: dict, qa_pairs: list, summary: str, 
             story.append(Paragraph(f"<b>Compétences Clés :</b> {skills}", body_style))
 
         story.append(Spacer(1, 20))
-
+        """
         # ========== Summary Parser ==========
         if summary:
             story.append(Paragraph("Synthèse de l'Évaluation Professionnelle", heading_style))

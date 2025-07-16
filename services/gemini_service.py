@@ -129,25 +129,30 @@ def generate_followup_question(cv_analysis: dict, previous_qa: list) -> str:
         qa_context = "\n".join(
             f"Q : {recent_qa['question']}\nR : {recent_qa['answer']}")
 
-        prompt = f"""Vous menez un entretien d'évaluation professionnelle. En vous basant sur l'analyse du CV et les échanges précédents, générez la prochaine question pertinente dans une phrase.
+        prompt = f"""Tu es un agent d’IA expert en stratégie d’entreprise, développement commercial et optimisation de modèles économiques. Ton rôle est de guider un commerçant (ex. : restaurateur, détaillant, e-commerçant) à travers un entretien stratégique structuré. L’objectif final est de produire un rapport personnalisé pour augmenter son chiffre d’affaires et réduire ses coûts.
 
-Analyse du CV :
-Résumé : {cv_analysis.get('summary', '')}
-Stade de carrière : {cv_analysis.get('career_stage', '')}
-Compétences clés : {', '.join(cv_analysis.get('key_skills', []))}
-Axes d'amélioration : {', '.join(cv_analysis.get('potential_areas_for_growth', []))}
+Tu poses une question à la fois, en t’appuyant sur :
+- La dernière question posée
+- La réponse obtenue
+- Le fil conducteur de l’entretien
 
-Conversation précédente :
-{qa_context}
+⚠️ Très important : ton objectif est de couvrir **tous les aspects stratégiques clés** du business, pas seulement approfondir un sujet isolé. Tu dois donc constamment maintenir un **équilibre** entre :
+1. Approfondir un sujet mentionné si c’est pertinent **ET**
+2. Explorer un nouveau domaine stratégique non abordé si besoin (modèle économique, tarification, coûts, acquisition client, fidélisation, outils digitaux, ressources humaines, contraintes opérationnelles, etc.)
 
-Générez une question de suivi qui :
-1. S'appuie sur leurs réponses précédentes
-2. Explore d'autres aspects de leur développement professionnel
-3. Peut aborder : développement des compétences, défis rencontrés, expériences de leadership, transitions de carrière, préférences d'apprentissage, environnement de travail ou aspirations futures
-4. Maintient une tonalité conversationnelle et bienveillante
-5. Encourage des exemples concrets et une réflexion approfondie
+Critères pour ta prochaine question :
+- Utile à la construction du rapport stratégique final
+- Pas redondante
+- Permet de récupérer une information clé sur le fonctionnement ou les problèmes du commerce
+- Formulée de manière naturelle et conversationnelle
 
-Retournez uniquement le texte de la question, sans mise en forme supplémentaire."""
+Voici le contexte :
+Dernière question et réponse  : {qa_context}
+Tout les questions et réponses : {recent_qa}
+
+Quelle est la prochaine question pertinente, équilibrée et stratégique que tu poses ?
+
+"""
 
         response = client.models.generate_content(
             model="gemini-2.5-flash",
@@ -181,24 +186,22 @@ def generate_final_summary(cv_analysis: dict, qa_pairs: list) -> str:
         qa_text = "\n".join(
             [f"Q : {qa['question']}\nR : {qa['answer']}" for qa in qa_pairs])
 
-        prompt = f"""En tant que consultant professionnel en carrière, créez un rapport d'évaluation complet basé sur les éléments suivants :
+        prompt = f"""Tu es un expert en stratégie commerciale et développement d’entreprise. Tu viens de conduire un entretien structuré avec un propriétaire de boutique. À partir des réponses fournies, tu dois maintenant générer un **rapport stratégique personnalisé**.
 
-Analyse initiale du CV :
-{json.dumps(cv_analysis, indent=2, ensure_ascii=False)}
+Le rapport doit :
+- Identifier les points forts et les faiblesses du modèle actuel
+- Proposer des recommandations concrètes pour augmenter le chiffre d’affaires
+- Proposer des pistes réalistes de réduction de coûts
+- Inclure des suggestions sur la tarification, l’acquisition client, la fidélisation, le positionnement et les opportunités de croissance
+- Être structuré en sections claires : 1. Résumé exécutif 2. Diagnostic 3. Recommandations stratégiques 4. Actions prioritaires
+- Être rédigé dans un ton professionnel, encourageant et orienté vers les résultats
+- Ne pas inclure de spéculations injustifiées, mais s’appuyer uniquement sur les réponses obtenues
 
-Questions & Réponses de l'entretien :
+Voici les réponses complètes du commerçant à l’entretien :
 {qa_text}
 
-Créez un rapport d'évaluation professionnel détaillé qui inclut :
-1. Résumé exécutif du profil du candidat
-2. Forces identifiées
-3. Points à améliorer 
-4. Recommandations pour le développement professionnel
-5. Compétences à développer
-6. Prochaines étapes concrètes
-7. Évaluation globale
-
-Basez le rapport sur les réponses fournies et le contenu du CV. Soyez précis et donnez des recommandations actionnables. Rédigez en français et de manière professionnelle."""
+Génère maintenant un rapport structuré en suivant les consignes ci-dessus.
+"""
 
         response = client.models.generate_content(
             model="gemini-2.5-flash",

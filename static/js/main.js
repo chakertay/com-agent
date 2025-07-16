@@ -4,7 +4,7 @@ let isRecording = false;
 let speechRecognition = null;
 let currentQuestionText = "";
 let recognizedText = "";
-const api_key = process.env.HEYGEN_API_KEY;
+const api_key = "MGU1MmM3NTQwYjllNGJhMGFhNWY4OWJiOTVjMTFmOGItMTc1MjY3MjQyMg==";
 console.log("API KEY", api_key);
 const API_CONFIG = {
     serverUrl: "https://api.heygen.com",
@@ -291,6 +291,7 @@ async function closeHeygenSession() {
 // Analyze CV and get first question
 async function analyzeCV() {
     try {
+        /*
         const response = await fetch("/api/analyze_cv", {
             method: "POST",
             headers: {
@@ -299,16 +300,14 @@ async function analyzeCV() {
         });
 
         const data = await response.json();
-
-        if (data.success) {
-            currentQuestionText = data.first_question;
-            displayQuestion(data.first_question);
+        */
+        
+            currentQuestionText = " Bonjour comment je peut vous aider ?";
+            displayQuestion(currentQuestionText);
             document.getElementById("loading-screen").style.display = "none";
             document.getElementById("assessment-interface").style.display =
                 "block";
-        } else {
-            throw new Error(data.error || "Failed to analyze CV");
-        }
+        
     } catch (error) {
         console.error("Error analyzing CV:", error);
         showError("Échec de l'analyse du CV. Veuillez réessayer.");

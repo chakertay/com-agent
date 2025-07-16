@@ -19,6 +19,7 @@ def index():
 def upload_cv():
     """Handle CV upload and start assessment"""
     try:
+        """"
         if 'cv_file' not in request.files:
             flash('No file selected', 'error')
             return redirect(url_for('main.index'))
@@ -45,6 +46,8 @@ def upload_cv():
         if not cv_content:
             flash('Could not extract text from CV. Please ensure it\'s a valid PDF or DOCX file.', 'error')
             return redirect(url_for('main.index'))
+            
+            """
 
         # Generate session ID
         session_id = str(uuid.uuid4())
@@ -52,8 +55,8 @@ def upload_cv():
         # Create assessment session
         assessment_session = AssessmentSession(
             session_id=session_id,
-            cv_filename=filename,
-            cv_content=cv_content,
+            cv_filename='cv.pdf',
+            cv_content='hello hello hello hello ',
             status='started'
             
         )
