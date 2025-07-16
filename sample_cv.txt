@@ -1,0 +1,45 @@
+JOHN SMITH
+Senior Software Engineer
+Email: john.smith@email.com | Phone: (555) 123-4567
+LinkedIn: linkedin.com/in/johnsmith
+
+PROFESSIONAL SUMMARY
+Experienced software engineer with 8+ years developing scalable web applications and leading technical teams. Expertise in full-stack development, cloud architecture, and agile methodologies. Proven track record of delivering high-quality solutions and mentoring junior developers.
+
+WORK EXPERIENCE
+
+Senior Software Engineer | TechCorp Inc. | 2020 - Present
+• Lead development of microservices architecture serving 1M+ users
+• Mentored team of 5 junior developers
+• Implemented CI/CD pipelines reducing deployment time by 60%
+• Technologies: Python, React, AWS, Docker, Kubernetes
+
+Software Engineer | StartupXYZ | 2018 - 2020
+• Developed RESTful APIs and responsive web applications
+• Collaborated with product team to define technical requirements
+• Optimized database queries improving application performance by 40%
+• Technologies: Node.js, PostgreSQL, MongoDB, Vue.js
+
+Junior Developer | WebSolutions Ltd. | 2016 - 2018
+• Built responsive websites for small to medium businesses
+• Participated in code reviews and technical planning sessions
+• Technologies: JavaScript, HTML/CSS, PHP, MySQL
+
+EDUCATION
+Bachelor of Computer Science | State University | 2016
+• Relevant Coursework: Data Structures, Algorithms, Database Systems
+• Senior Project: E-commerce platform with payment integration
+
+SKILLS
+• Programming Languages: Python, JavaScript, Java, Go
+• Web Technologies: React, Vue.js, Node.js, HTML/CSS
+• Databases: PostgreSQL, MongoDB, Redis
+• Cloud Platforms: AWS, Google Cloud, Azure
+• DevOps: Docker, Kubernetes, Jenkins, GitLab CI
+• Methodologies: Agile, Scrum, Test-Driven Development
+
+ACHIEVEMENTS
+• Led migration of legacy system to microservices, reducing downtime by 80%
+• Received "Employee of the Year" award in 2021
+• Published technical blog posts with 10K+ monthly readers
+• Certified AWS Solutions Architect Associate

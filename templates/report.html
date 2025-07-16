@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Assessment Report - AI Professional Assessment{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+        <div class="card shadow-lg">
+            <div class="card-header text-center">
+                <h2 class="mb-0">
+                    <i class="fas fa-file-alt me-2"></i>
+                    Rapport : Bilan Professionnel
+                </h2>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                    <h4>Your Assessment is Complete!</h4>
+                    <p class="text-muted">
+                        We've analyzed your professional background and compiled a comprehensive report 
+                        based on your CV and interview responses.
+                    </p>
+                </div>
+
+                <!-- Assessment Summary -->
+                <div class="mb-4">
+                    <h5><i class="fas fa-user-tie me-2"></i>Assessment Overview</h5>
+                    <div class="bg-light p-3 rounded text-black">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>CV File:</strong> {{ assessment.cv_filename }}</p>
+                                <p><strong>Questions Answered:</strong> {{ assessment.get_questions_answers()|length }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Date:</strong> {{ assessment.created_at.strftime('%B %d, %Y') }}</p>
+                                <p><strong>Status:</strong> 
+                                    <span class="badge bg-success">{{ assessment.status|title }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Insights -->
+                {% if assessment.cv_analysis %}
+                <div class="mb-4 text-black">
+                    <h5><i class="fas fa-lightbulb me-2"></i>Key Insights</h5>
+                    <div class="bg-light p-3 rounded">
+                        {% set cv_data = assessment.cv_analysis|safe %}
+                        <p><strong>Résumé Professionnel:</strong> À partir de l'analyse de votre CV et de vos réponses, nous avons ciblé vos forces clés et axes d'amélioration.</p>
+                        <p><strong>Bilan Completé:</strong> {{ assessment.get_questions_answers()|length }} Questions approfondies sur votre expérience professionnelle, vos aptitudes et vos objectifs.</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Interview Questions & Answers -->
+                <div class="mb-4">
+                    <h5><i class="fas fa-comments me-2"></i>Résumé d'entretien</h5>
+                    {% for qa in assessment.get_questions_answers() %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h6 class="card-title">Question {{ loop.index }}</h6>
+                            <p class="card-text"><strong>Q:</strong> {{ qa.question }}</p>
+                            <p class="card-text"><strong>A:</strong> {{ qa.answer }}</p>
+                            <small class="text-muted">
+                                <i class="fas fa-clock me-1"></i>
+                                {{ qa.timestamp[:19] if qa.timestamp else 'N/A' }}
+                            </small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Download Actions -->
+                <div class="text-center">
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{{ url_for('main.download_report', session_id=assessment.session_id) }}" 
+                           class="btn btn-primary btn-lg">
+                            <i class="fas fa-download me-2"></i>
+                            Télécharger Bilan
+                        </a>
+                        <a href="{{ url_for('main.new_assessment') }}" 
+                           class="btn btn-secondary btn-lg">
+                            <i class="fas fa-plus me-2"></i>
+                            Nouvelle Évaluation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

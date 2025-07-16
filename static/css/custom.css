@@ -1,0 +1,260 @@
+/* Custom styles for the AI Professional Assessment application */
+
+/* Root variables for consistency */
+:root {
+    --primary-color: #2E86AB;
+    --secondary-color: #A23B72;
+    --accent-color: #F18F01;
+    --success-color: #C73E1D;
+    --warning-color: #F4A261;
+    --info-color: #2A9D8F;
+    --light-bg: #F8F9FA;
+    --dark-bg: #212529;
+}
+
+/* Global styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* Card enhancements */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background: var(--bs-primary);
+    color: white;
+    border-radius: 12px 12px 0 0;
+    padding: 1.5rem;
+}
+
+/* Button enhancements */
+.btn {
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Progress indicator styles */
+.progress-step {
+    transition: all 0.3s ease;
+    border: 3px solid var(--bs-secondary);
+}
+
+.progress-step.active {
+    background: var(--bs-primary) !important;
+    border-color: var(--bs-primary);
+    transform: scale(1.1);
+}
+
+.progress-step.completed {
+    background: var(--bs-success) !important;
+    border-color: var(--bs-success);
+}
+
+.progress-step.completed::after {
+    content: '✓';
+    position: absolute;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Audio controls styling */
+.audio-controls {
+    padding: 2rem;
+    background: var(--bs-light);
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.recording-indicator {
+    background: rgba(220, 53, 69, 0.1);
+    border: 2px dashed var(--bs-danger);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+/* Question display styling */
+#question-display {
+    background: var(--bs-light) !important;
+    border-left: 4px solid var(--bs-primary);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+#answer-section {
+    background: rgba(40, 167, 69, 0.1);
+    border-left: 4px solid var(--bs-success);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+/* Loading animations */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .audio-controls {
+        padding: 1rem;
+    }
+    
+    .progress-step {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Dark mode specific adjustments */
+[data-bs-theme="dark"] {
+    --light-bg: #2d3748;
+}
+
+[data-bs-theme="dark"] .card {
+    background: var(--bs-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] #question-display {
+    background: var(--light-bg) !important;
+    color: var(--bs-light);
+}
+
+[data-bs-theme="dark"] #answer-section {
+    background: rgba(40, 167, 69, 0.2) !important;
+    color: var(--bs-light);
+}
+
+[data-bs-theme="dark"] .audio-controls {
+    background: var(--light-bg);
+}
+
+/* Accessibility improvements */
+.btn:focus {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+}
+
+.form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(46, 134, 171, 0.25);
+}
+
+/* Animation classes */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* File upload styling */
+.form-control[type="file"] {
+    border: 2px dashed var(--bs-border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.form-control[type="file"]:hover {
+    border-color: var(--bs-primary);
+    background: rgba(46, 134, 171, 0.05);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bs-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bs-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bs-primary);
+}
+
+/* Print styles */
+@media print {
+    .btn,
+    .navbar,
+    footer {
+        display: none !important;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .container {
+        max-width: 100% !important;
+    }
+}

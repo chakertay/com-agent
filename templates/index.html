@@ -1,0 +1,111 @@
+{% extends "base.html" %} {% block title %}Télécharger CV - Évaluation
+Professionnelle IA{% endblock %} {% block content %}
+<script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-lg">
+            <div class="card-header text-center">
+                <h2 class="mb-0">
+                    <i class="fas fa-file-upload me-2"></i>
+                    Évaluation Professionnelle
+                </h2>
+            </div>
+            <div class="card-body">
+                <p class="text-muted text-center mb-4">
+                    Téléchargez votre CV pour commencer une évaluation
+                    professionnelle alimentée par l'IA. Notre système analysera
+                    votre parcours et vous guidera à travers des questions
+                    personnalisées pour vous aider à comprendre votre chemin de
+                    carrière.
+                </p>
+
+                <form
+                    method="POST"
+                    action="{{ url_for('main.upload_cv') }}"
+                    enctype="multipart/form-data"
+                >
+                    <div class="mb-4">
+                        <label for="cv_file" class="form-label">
+                            <i class="fas fa-file-pdf me-2"></i>Téléchargez
+                            votre CV
+                        </label>
+                        <input
+                            type="file"
+                            class="form-control form-control-lg"
+                            id="cv_file"
+                            name="cv_file"
+                            accept=".pdf,.docx,.doc"
+                            required
+                        />
+                        <div class="form-text">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Formats supportés : PDF, DOCX, DOC (max 16 Mo)
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-upload me-2"></i>
+                            Commencer l'Évaluation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row mt-5">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-brain fa-2x text-primary mb-3"></i>
+                        <h5>AI Analysis</h5>
+<<<<<<< HEAD
+                        <p class="text-muted small">
+                            Advanced AI analyzes your CV to understand your
+                            professional journey
+                        </p>
+=======
+                        <p class="text-muted small">Un agent IA dédié à l'optimisation de votre parcours professionnel</p>
+>>>>>>> 441d247eee20d157ee477f74d1a3e0fc481d7ab3
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i
+                            class="fas fa-microphone fa-2x text-primary mb-3"
+                        ></i>
+                        <h5>Voice Interaction</h5>
+<<<<<<< HEAD
+                        <p class="text-muted small">
+                            Natural conversation with AI using voice for a more
+                            personal experience
+                        </p>
+=======
+                        <p class="text-muted small">Conversation naturelle avec l'IA par la voix pour une expérience plus personnelle</p>
+>>>>>>> 441d247eee20d157ee477f74d1a3e0fc481d7ab3
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-file-alt fa-2x text-primary mb-3"></i>
+                        <h5>Professional Report</h5>
+<<<<<<< HEAD
+                        <p class="text-muted small">
+                            Comprehensive PDF report with insights and
+                            recommendations
+                        </p>
+=======
+                        <p class="text-muted small">Rapport PDF détaillé avec analyses et recommandations</p>
+>>>>>>> 441d247eee20d157ee477f74d1a3e0fc481d7ab3
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
