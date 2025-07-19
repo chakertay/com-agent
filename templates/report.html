@@ -15,21 +15,20 @@
             <div class="card-body">
                 <div class="text-center mb-4">
                     <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
-                    <h4>Your Assessment is Complete!</h4>
+                    <h4>Votre bilan est prêt!</h4>
                     <p class="text-muted">
-                        We've analyzed your professional background and compiled a comprehensive report 
-                        based on your CV and interview responses.
+                        Nous avons analysé la situation de votre entreprise et établi un rapport détaillé
+                        à partir de vos réponses lors de l'entretien.
                     </p>
                 </div>
 
                 <!-- Assessment Summary -->
                 <div class="mb-4">
-                    <h5><i class="fas fa-user-tie me-2"></i>Assessment Overview</h5>
+                    <h5><i class="fas fa-user-tie me-2"></i>Vue général</h5>
                     <div class="bg-light p-3 rounded text-black">
                         <div class="row">
                             <div class="col-md-6">
-                                <p><strong>CV File:</strong> {{ assessment.cv_filename }}</p>
-                                <p><strong>Questions Answered:</strong> {{ assessment.get_questions_answers()|length }}</p>
+                                <p><strong>Questions répondus:</strong> {{ assessment.get_questions_answers()|length }}</p>
                             </div>
                             <div class="col-md-6">
                                 <p><strong>Date:</strong> {{ assessment.created_at.strftime('%B %d, %Y') }}</p>
@@ -41,17 +40,6 @@
                     </div>
                 </div>
 
-                <!-- Key Insights -->
-                {% if assessment.cv_analysis %}
-                <div class="mb-4 text-black">
-                    <h5><i class="fas fa-lightbulb me-2"></i>Key Insights</h5>
-                    <div class="bg-light p-3 rounded">
-                        {% set cv_data = assessment.cv_analysis|safe %}
-                        <p><strong>Résumé Professionnel:</strong> À partir de l'analyse de votre CV et de vos réponses, nous avons ciblé vos forces clés et axes d'amélioration.</p>
-                        <p><strong>Bilan Completé:</strong> {{ assessment.get_questions_answers()|length }} Questions approfondies sur votre expérience professionnelle, vos aptitudes et vos objectifs.</p>
-                    </div>
-                </div>
-                {% endif %}
 
                 <!-- Interview Questions & Answers -->
                 <div class="mb-4">

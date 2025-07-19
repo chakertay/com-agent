@@ -145,9 +145,9 @@ async function createHeygenSession() {
         },
         body: JSON.stringify({
             quality: "high",
-            avatar_name: "Wayne_20240711",
+            avatar_name: "Graham_Chair_Sitting_public",
             voice: {
-                voice_id: "4829d1907f1e48f3b7a7a1d0594abd7d",
+                voice_id: "90bab79483c242d7b4487e5708db6744",
                 rate: 1.0,
             },
             version: "v2",
@@ -640,7 +640,7 @@ async function submitAnswer() {
 
 // Update progress
 function updateProgress() {
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 10; i++) {
         const step = document.getElementById(`step${i}`);
         if (i < currentQuestion) {
             step.classList.add("completed");

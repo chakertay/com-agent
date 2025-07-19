@@ -140,7 +140,7 @@ def submit_answer():
         logging.info(f"Current Q&A list: {qa_list}")
 
         # Check if we should continue with more questions (limit to 8 questions)
-        if len(qa_list) >= 8:
+        if len(qa_list) >= 10:
             assessment_session.status = 'completed'
             db.session.commit()
 

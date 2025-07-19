@@ -1,190 +1,313 @@
 /* Custom styles for the AI Professional Assessment application */
 
-/* Root variables for consistency */
+/* Root variables for consistency - Adjusted for a more modern, slightly darker palette */
 :root {
-    --primary-color: #2E86AB;
-    --secondary-color: #A23B72;
-    --accent-color: #F18F01;
-    --success-color: #C73E1D;
-    --warning-color: #F4A261;
-    --info-color: #2A9D8F;
-    --light-bg: #F8F9FA;
-    --dark-bg: #212529;
+    --primary-color: #007bff; /* Standard blue, perhaps adjust to a more vibrant one later if needed */
+    --secondary-color: #6c757d; /* Standard gray */
+    --accent-color: #ffc107; /* Standard yellow */
+    --success-color: #28a745; /* Standard green */
+    --warning-color: #ffc107; /* Standard yellow */
+    --info-color: #17a2b8; /* Standard cyan */
+
+    /* New, more professional and modern color scheme */
+    --bs-primary: #007bff; /* Keep original Bootstrap variable reference if it's used elsewhere */
+    --bs-secondary: #6c757d;
+    --bs-success: #28a745;
+    --bs-info: #17a2b8;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #343a40; /* Darker default dark for deeper contrast */
+
+    /* Refined custom palette for AI aesthetic */
+    --ai-primary-blue: #00d4ff; /* Brighter, more energetic blue */
+    --ai-dark-bg: #0d0d1a; /* Very dark background */
+    --ai-medium-dark-bg: #1a1a33; /* Slightly lighter dark for contrast */
+    --ai-text-light: #e0e7eb; /* Soft white for readability */
+    --ai-text-secondary: #a0a8b4; /* Muted text for secondary info */
+    --ai-border-glow: #00faff; /* Vibrant glow color */
+    --ai-success-green: #00ffaa; /* Brighter success green */
+    --ai-danger-red: #ff4d6b; /* Modern red for alerts */
 }
 
-/* Global styles */
+/* Global styles - Modern typography and smoother rendering */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* More modern font stack */
+    line-height: 1.7; /* Increased line-height for better readability */
+    color: var(--ai-text-light); /* Apply light text color */
+    background-color: var(--ai-dark-bg); /* Apply dark background */
+    -webkit-font-smoothing: antialiased; /* Smoother font rendering */
+    -moz-osx-font-smoothing: grayscale; /* Smoother font rendering */
 }
 
-/* Card enhancements */
+/* Card enhancements - Sleeker, more premium look */
 .card {
     border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    border-radius: 18px; /* More rounded corners */
+    background: var(--ai-medium-dark-bg); /* Darker card background */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(0, 212, 255, 0.05); /* Deeper, more complex shadow with inner glow */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother, professional transition */
+    overflow: hidden; /* Ensure content respects border-radius */
+    border: 1px solid rgba(0, 212, 255, 0.1); /* Subtle border */
 }
 
 .card:hover {
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 212, 255, 0.1); /* More pronounced hover shadow */
+    transform: translateY(-5px); /* More noticeable lift */
+    border-color: rgba(0, 212, 255, 0.3); /* Slight border highlight on hover */
 }
 
 .card-header {
-    background: var(--bs-primary);
-    color: white;
-    border-radius: 12px 12px 0 0;
-    padding: 1.5rem;
+    background: linear-gradient(90deg, rgba(0, 212, 255, 0.2) 0%, rgba(155, 89, 182, 0.2) 100%); /* Subtle gradient header */
+    color: var(--ai-text-light); /* Light text on header */
+    border-radius: 18px 18px 0 0; /* Consistent border radius */
+    padding: 1.75rem 2rem; /* More generous padding */
+    font-size: 1.3rem; /* Slightly larger header text */
+    font-weight: 600; /* Bolder header */
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15); /* Separator line */
 }
 
-/* Button enhancements */
+/* Button enhancements - Modern, interactive buttons */
 .btn {
-    border-radius: 8px;
-    padding: 0.75rem 1.5rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    border-radius: 10px; /* Slightly more rounded */
+    padding: 0.85rem 1.8rem; /* More balanced padding */
+    font-weight: 600; /* Bolder text */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+    text-transform: uppercase; /* Subtle uppercase for modern feel */
+    letter-spacing: 0.5px;
+    border: none; /* Remove default border */
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #00d4ff, #0099ff); /* Vibrant blue gradient */
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4); /* Glow effect */
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #00eaff, #00b0ff); /* Slightly brighter on hover */
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.6); /* Enhanced hover glow */
+    transform: translateY(-2px) scale(1.01); /* More pronounced lift and subtle scale */
 }
 
 .btn-lg {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
+    padding: 1.1rem 2.5rem; /* Larger padding */
+    font-size: 1.2rem; /* Larger font */
 }
 
 .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px); /* Consistent lift */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
 }
 
-/* Progress indicator styles */
+/* Progress indicator styles - Integrate with new design aesthetic */
 .progress-step {
-    transition: all 0.3s ease;
-    border: 3px solid var(--bs-secondary);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 3px solid var(--ai-text-secondary); /* Softer secondary border */
+    color: var(--ai-text-light); /* Ensure text is visible */
+    position: relative; /* For checkmark positioning */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
 .progress-step.active {
-    background: var(--bs-primary) !important;
-    border-color: var(--bs-primary);
-    transform: scale(1.1);
+    background: var(--ai-primary-blue) !important;
+    border-color: var(--ai-primary-blue);
+    transform: scale(1.18); /* More visual emphasis */
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.7); /* Stronger glow */
+    color: white;
 }
 
 .progress-step.completed {
-    background: var(--bs-success) !important;
-    border-color: var(--bs-success);
+    background: var(--ai-success-green) !important;
+    border-color: var(--ai-success-green);
+    box-shadow: 0 0 15px rgba(0, 255, 170, 0.7); /* Green glow */
+    color: white;
 }
 
 .progress-step.completed::after {
     content: '✓';
     position: absolute;
-    font-size: 0.8rem;
+    font-size: 1rem; /* Larger checkmark */
     font-weight: bold;
+    color: white; /* White checkmark */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for checkmark */
 }
 
-/* Audio controls styling */
+/* Audio controls styling - Integrated with overall dark theme */
 .audio-controls {
-    padding: 2rem;
-    background: var(--bs-light);
-    border-radius: 12px;
-    margin: 2rem 0;
+    padding: 2.5rem; /* More padding */
+    background: var(--ai-medium-dark-bg); /* Darker background */
+    border-radius: 18px; /* Consistent border radius */
+    margin: 2.5rem 0;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), inset 0 0 8px rgba(0, 212, 255, 0.03); /* Deeper shadow and inner glow */
+    border: 1px solid rgba(0, 212, 255, 0.1); /* Subtle border */
 }
 
+/* Recording indicator - Already handled in style.txt, keeping this for consistency */
 .recording-indicator {
-    background: rgba(220, 53, 69, 0.1);
-    border: 2px dashed var(--bs-danger);
-    border-radius: 8px;
-    padding: 1rem;
-    margin-top: 1rem;
+    background: rgba(255, 77, 107, 0.1); /* Softer red for professional look */
+    border: 1px solid rgba(255, 77, 107, 0.5); /* Refined border */
+    border-radius: 10px; /* Consistent rounded corners */
+    padding: 1rem 1.5rem;
+    margin-top: 1.5rem;
+    color: var(--ai-danger-red); /* Modern red text */
+    font-weight: 500;
 }
 
-/* Question display styling */
+/* Question display styling - Modern and clear */
 #question-display {
-    background: var(--bs-light) !important;
-    border-left: 4px solid var(--bs-primary);
-    padding: 1.5rem;
-    margin: 1.5rem 0;
+    background: var(--ai-medium-dark-bg) !important;
+    border-left: 5px solid var(--ai-primary-blue); /* Thicker, more prominent border */
+    padding: 2rem; /* More generous padding */
+    margin: 2rem 0;
+    border-radius: 12px; /* Softly rounded corners */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    color: var(--ai-text-light); /* Ensure text is light */
 }
 
 #answer-section {
-    background: rgba(40, 167, 69, 0.1);
-    border-left: 4px solid var(--bs-success);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
+    background: rgba(0, 255, 170, 0.1) !important; /* Lighter success background */
+    border-left: 5px solid var(--ai-success-green); /* Thicker success border */
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 5px 20px rgba(0, 255, 170, 0.15); /* Subtle green shadow */
+    color: var(--ai-text-light);
 }
 
-/* Loading animations */
+/* Loading animations - Enhanced visual appeal */
 .spinner-border {
-    width: 3rem;
-    height: 3rem;
+    width: 3.5rem; /* Slightly larger */
+    height: 3.5rem;
+    border-width: 0.3rem !important; /* Thicker spinner border */
+    color: var(--ai-primary-blue) !important; /* Use AI primary blue */
 }
 
-/* Responsive design */
+/* Responsive design - Keep existing media queries, enhance styling */
 @media (max-width: 768px) {
     .container {
-        padding: 1rem;
+        padding: 0.75rem; /* Slightly less padding on small screens */
     }
-    
+
     .card-body {
-        padding: 1.5rem;
+        padding: 1.25rem; /* Adjusted padding */
     }
-    
+
     .btn {
         width: 100%;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem; /* More margin for stacked buttons */
     }
-    
+
     .audio-controls {
-        padding: 1rem;
+        padding: 1.5rem; /* Adjusted padding */
     }
-    
+
     .progress-step {
-        width: 30px;
-        height: 30px;
-        margin: 0 5px;
-        font-size: 0.8rem;
+        width: 35px; /* Adjusted size */
+        height: 35px;
+        margin: 0 4px; /* Adjusted margin */
+        font-size: 0.9rem;
+    }
+
+    .ai-avatar-section {
+        padding: 1.5rem; /* Reduced padding for smaller screens */
+    }
+
+    .avatar-title {
+        font-size: 1.8rem; /* Smaller title on mobile */
+        letter-spacing: 2px;
+    }
+
+    .avatar-subtitle {
+        font-size: 0.95rem;
+        gap: 0.25rem;
+    }
+
+    .video-frame {
+        border-radius: 20px; /* Smaller radius for mobile */
+    }
+
+    #mediaElement {
+        border-radius: 18px;
+    }
+
+    .hologram-grid {
+        border-radius: 20px;
+    }
+
+    .corner-decorations {
+        width: 25px;
+        height: 25px;
+    }
+
+    .corner-decorations::before,
+    .corner-decorations::after {
+        width: 12px;
+        height: 3px;
+    }
+
+    /* Adjust corner positions for smaller size */
+    .corner-top-left, .corner-top-right,
+    .corner-bottom-left, .corner-bottom-right {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
     }
 }
 
-/* Dark mode specific adjustments */
+/* Dark mode specific adjustments - Consistent with new dark theme */
 [data-bs-theme="dark"] {
-    --light-bg: #2d3748;
+    --bs-light: #2d3748; /* Bootstrap light in dark mode */
+    --bs-dark: #1a202c; /* Deeper dark for Bootstrap dark mode */
+    --primary-color: #00d4ff; /* Ensure primary is vibrant in dark mode */
 }
 
 [data-bs-theme="dark"] .card {
-    background: var(--bs-dark);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--ai-medium-dark-bg);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    color: var(--ai-text-light);
+}
+
+[data-bs-theme="dark"] .card-header {
+    background: linear-gradient(90deg, rgba(0, 212, 255, 0.2) 0%, rgba(155, 89, 182, 0.2) 100%);
+    color: var(--ai-text-light);
 }
 
 [data-bs-theme="dark"] #question-display {
-    background: var(--light-bg) !important;
-    color: var(--bs-light);
+    background: var(--ai-medium-dark-bg) !important;
+    color: var(--ai-text-light);
 }
 
 [data-bs-theme="dark"] #answer-section {
-    background: rgba(40, 167, 69, 0.2) !important;
-    color: var(--bs-light);
+    background: rgba(0, 255, 170, 0.1) !important;
+    color: var(--ai-text-light);
 }
 
 [data-bs-theme="dark"] .audio-controls {
-    background: var(--light-bg);
+    background: var(--ai-medium-dark-bg);
 }
 
-/* Accessibility improvements */
+/* Accessibility improvements - Enhanced focus states */
 .btn:focus {
-    outline: 2px solid var(--bs-primary);
-    outline-offset: 2px;
+    outline: 3px solid var(--ai-primary-blue); /* Thicker, more visible outline */
+    outline-offset: 3px;
+    box-shadow: 0 0 0 0.25rem rgba(0, 212, 255, 0.4); /* Glow on focus */
 }
 
 .form-control:focus {
-    border-color: var(--bs-primary);
-    box-shadow: 0 0 0 0.2rem rgba(46, 134, 171, 0.25);
+    border-color: var(--ai-primary-blue);
+    box-shadow: 0 0 0 0.25rem rgba(0, 212, 255, 0.2); /* Soft glow on focus */
 }
 
-/* Animation classes */
+/* Animation classes - Keep existing, ensure smooth */
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(25px); /* Slightly larger slide distance */
     }
     to {
         opacity: 1;
@@ -193,7 +316,7 @@ body {
 }
 
 .slide-in {
-    animation: slideIn 0.5s ease-out;
+    animation: slideIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* Slower, smoother animation */
 }
 
 @keyframes fadeIn {
@@ -206,54 +329,58 @@ body {
 }
 
 .fade-in {
-    animation: fadeIn 0.5s ease-out;
+    animation: fadeIn 0.6s ease-out; /* Slower, smoother animation */
 }
 
-/* File upload styling */
+/* File upload styling - Modernized drag-and-drop area */
 .form-control[type="file"] {
-    border: 2px dashed var(--bs-border-color);
-    border-radius: 8px;
-    padding: 2rem;
+    border: 2px dashed rgba(0, 212, 255, 0.3); /* Blue dashed border */
+    border-radius: 12px; /* Softer corners */
+    padding: 2.5rem; /* More generous padding */
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    background-color: rgba(0, 212, 255, 0.05); /* Subtle blue tint */
+    color: var(--ai-text-secondary); /* Muted text color */
 }
 
 .form-control[type="file"]:hover {
-    border-color: var(--bs-primary);
-    background: rgba(46, 134, 171, 0.05);
+    border-color: var(--ai-primary-blue);
+    background: rgba(0, 212, 255, 0.1); /* More pronounced blue tint on hover */
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2); /* Soft glow on hover */
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - More subtle and integrated */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px; /* Slightly wider for better visibility */
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bs-light);
+    background: var(--ai-dark-bg); /* Match dark background */
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--bs-secondary);
-    border-radius: 4px;
+    background: rgba(0, 212, 255, 0.4); /* Semi-transparent blue */
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--bs-primary);
+    background: var(--ai-primary-blue); /* Solid blue on hover */
 }
 
-/* Print styles */
+/* Print styles - Keep as is, standard practice */
 @media print {
     .btn,
     .navbar,
     footer {
         display: none !important;
     }
-    
+
     .card {
         box-shadow: none;
         border: 1px solid #000;
     }
-    
+
     .container {
         max-width: 100% !important;
     }

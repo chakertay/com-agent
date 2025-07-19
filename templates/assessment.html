@@ -2,119 +2,135 @@
 Assessment{% endblock %} {% block head %}
 <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
 <style>
-    .recording-indicator {
-        display: none;
-        animation: pulse 2s infinite;
+    /* Recording indicator for subtle feedback */
+   .recording-indicator {
+        display: none; /* Controlled by JavaScript */
+        animation: pulse 2.5s infinite ease-in-out; /* Slower, smoother pulse */
     }
 
+    /* Keyframe animation for a subtle pulsing effect */
     @keyframes pulse {
         0% {
-            opacity: 0.5;
+            opacity: 0.7; /* Start with a higher base opacity for subtlety */
         }
         50% {
-            opacity: 1;
+            opacity: 1; /* Reach full opacity */
         }
         100% {
-            opacity: 0.5;
+            opacity: 0.7; /* Return to base opacity */
         }
     }
 
+    /* Keyframe animation for a subtle talking animation on the avatar */
     @keyframes talk {
         0% {
             transform: scale(1);
         }
         50% {
-            transform: scale(1.1);
+            transform: scale(1.03); /* Reduced scale for a more refined, less jarring effect */
         }
         100% {
             transform: scale(1);
         }
     }
 
+    /* Keyframe animation for a subtle listening animation on the avatar */
     @keyframes listen {
         0% {
-            opacity: 0.5;
+            opacity: 0.6; /* Slightly lower starting opacity for a gentle fade-in */
         }
         100% {
             opacity: 1;
         }
     }
 
+    /* Avatar states based on activity */
     #avatar.talking {
-        animation: talk 1s infinite;
+        animation: talk 0.8s infinite ease-in-out; /* Slightly faster and smoother talk animation */
     }
 
     #avatar.listening {
         animation: listen 2s infinite ease-in-out;
     }
 
-    .audio-controls {
+    /* Audio controls container */
+   .audio-controls {
         max-width: 400px;
         margin: 0 auto;
+        padding: 1.5rem 0; /* Added padding for better spacing */
     }
 
-    .progress-step {
-        width: 35px;
-        height: 35px;
+    /* Individual progress step styling */
+   .progress-step {
+        width: 38px; /* Slightly larger for better touch target and visual presence */
+        height: 38px; /* Slightly larger */
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 5px;
-        background: var(--bs-secondary);
+        margin: 0 8px; /* Increased margin for more breathing room */
+        background: var(--bs-secondary); /* Uses Bootstrap secondary color variable */
         color: white;
-        font-weight: bold;
-        font-size: 14px;
+        font-weight: 600; /* Slightly less bold for modern look */
+        font-size: 15px; /* Slightly larger font for readability */
+        transition: all 0.3s ease; /* Smooth transition for state changes */
     }
 
-    .progress-step.active {
-        background: var(--bs-primary);
+    /* Active progress step styling */
+   .progress-step.active {
+        background: var(--bs-primary); /* Uses Bootstrap primary color variable */
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.6); /* Subtle glow for active state */
     }
 
-    .progress-step.completed {
-        background: var(--bs-success);
+    /* Completed progress step styling */
+   .progress-step.completed {
+        background: var(--bs-success); /* Uses Bootstrap success color variable */
+        box-shadow: 0 0 15px rgba(40, 167, 69, 0.6); /* Subtle glow for completed state */
     }
 
     /* Futuristic AI Avatar Container */
-    .ai-avatar-section {
+   .ai-avatar-section {
         position: relative;
         background: linear-gradient(
             145deg,
-            #0a0a1e 0%,
-            #1a1a3e 50%,
-            #0a0a1e 100%
+            #06061a 0%, /* Deeper, more sophisticated dark tone */
+            #12122b 50%,
+            #06061a 100%
         );
         border-radius: 25px;
-        padding: 2rem;
-        margin-bottom: 2rem;
+        padding: 2.5rem; /* Increased padding for more internal space */
+        margin-bottom: 2.5rem; /* Increased margin for separation */
         overflow: hidden;
-        border: 2px solid transparent;
+        border: 1px solid transparent; /* Subtle border for definition */
         box-shadow:
-            0 0 50px rgba(0, 212, 255, 0.2),
-            inset 0 0 50px rgba(0, 212, 255, 0.05);
+            0 0 25px rgba(0, 212, 255, 0.3), /* Reduced spread, increased opacity for a tighter glow */
+            inset 0 0 25px rgba(0, 212, 255, 0.08); /* Reduced spread, increased opacity for internal glow */
     }
 
-    .ai-avatar-section::before {
+    /* Animated border effect for the AI avatar section */
+   .ai-avatar-section::before {
         content: "";
         position: absolute;
         top: -2px;
         left: -2px;
         right: -2px;
         bottom: -2px;
+        /* Harmonized gradient: removed red, focused on blues/purples/greens */
         background: linear-gradient(
             45deg,
-            #00d4ff,
-            #9b59b6,
-            #ff6b6b,
-            #00ff88,
-            #00d4ff
+            #00d4ff, /* Cyan */
+            #9b59b6, /* Purple */
+            #00ff88, /* Green */
+            #00d4ff  /* Cyan */
         );
-        background-size: 400% 400%;
-        animation: borderGlow 4s ease infinite;
+        background-size: 300% 300%; /* Slightly smaller size for faster, smoother transition */
+        animation: borderGlow 6s ease infinite; /* Slower animation for more elegance */
         z-index: -1;
         border-radius: 25px;
+        filter: brightness(1.2); /* Slightly brighter glow */
     }
 
+    /* Keyframe animation for the glowing border */
     @keyframes borderGlow {
         0%,
         100% {
@@ -131,102 +147,110 @@ Assessment{% endblock %} {% block head %}
         }
     }
 
-    .avatar-header {
+    /* Header section for the avatar */
+   .avatar-header {
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem; /* Increased margin for better separation */
         position: relative;
     }
 
-    .avatar-title {
+    /* Main title of the avatar section */
+   .avatar-title {
         color: #00d4ff;
-        font-size: 1.8rem;
+        font-size: 1.7rem; /* Slightly reduced font size for better balance */
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 0.5rem;
+        letter-spacing: 2px; /* Reduced letter spacing for better readability */
+        margin-bottom: 0.75rem; /* Increased margin for separation from subtitle */
         text-shadow:
-            0 0 10px rgba(0, 212, 255, 0.8),
-            0 0 20px rgba(0, 212, 255, 0.5),
-            0 0 30px rgba(0, 212, 255, 0.3);
-        animation: titlePulse 3s ease-in-out infinite;
+            0 0 10px rgba(0, 212, 255, 0.8), /* Single, refined text shadow for clarity */
+            0 0 20px rgba(0, 212, 255, 0.4); /* Secondary, softer shadow */
+        animation: titlePulse 4s ease-in-out infinite; /* Slower, more subtle pulse animation */
     }
 
+    /* Keyframe animation for the title pulse */
     @keyframes titlePulse {
         0%,
         100% {
             text-shadow:
                 0 0 10px rgba(0, 212, 255, 0.8),
-                0 0 20px rgba(0, 212, 255, 0.5),
-                0 0 30px rgba(0, 212, 255, 0.3);
+                0 0 20px rgba(0, 212, 255, 0.4);
         }
         50% {
             text-shadow:
-                0 0 15px rgba(0, 212, 255, 1),
-                0 0 30px rgba(0, 212, 255, 0.8),
-                0 0 45px rgba(0, 212, 255, 0.6);
+                0 0 15px rgba(0, 212, 255, 1), /* Slightly increased intensity at peak */
+                0 0 30px rgba(0, 212, 255, 0.6); /* Slightly increased intensity at peak */
         }
     }
 
-    .avatar-subtitle {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 1rem;
-        letter-spacing: 1px;
+    /* Subtitle/status line for the avatar */
+   .avatar-subtitle {
+        color: rgba(255, 255, 255, 0.8); /* Slightly higher opacity for better visibility */
+        font-size: 0.95rem; /* Slightly reduced font size for hierarchy */
+        letter-spacing: 0.8px; /* Reduced letter spacing */
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
+        gap: 0.75rem; /* Increased gap for better separation */
     }
 
-    .status-indicator {
+    /* Status indicator dot */
+   .status-indicator {
         width: 10px;
         height: 10px;
         background: #00ff88;
         border-radius: 50%;
-        animation: statusPulse 2s infinite;
+        animation: statusPulse 2.5s infinite ease-in-out; /* Slower, smoother pulse */
         box-shadow:
-            0 0 10px rgba(0, 255, 136, 0.8),
-            0 0 20px rgba(0, 255, 136, 0.4);
+            0 0 8px rgba(0, 255, 136, 0.7), /* Reduced spread, increased opacity */
+            0 0 15px rgba(0, 255, 136, 0.3); /* Reduced spread, increased opacity */
     }
 
+    /* Keyframe animation for the status indicator pulse */
     @keyframes statusPulse {
         0%,
         100% {
             transform: scale(1);
             box-shadow:
-                0 0 10px rgba(0, 255, 136, 0.8),
-                0 0 20px rgba(0, 255, 136, 0.4);
+                0 0 8px rgba(0, 255, 136, 0.7),
+                0 0 15px rgba(0, 255, 136, 0.3);
         }
         50% {
-            transform: scale(1.3);
+            transform: scale(1.15); /* Reduced scale for a more subtle pulse */
             box-shadow:
-                0 0 15px rgba(0, 255, 136, 1),
-                0 0 30px rgba(0, 255, 136, 0.6),
-                0 0 45px rgba(0, 255, 136, 0.3);
+                0 0 12px rgba(0, 255, 136, 0.9), /* Increased intensity at peak */
+                0 0 25px rgba(0, 255, 136, 0.5),
+                0 0 35px rgba(0, 255, 136, 0.2);
         }
     }
 
-    .video-container {
+    /* Container for the video element, ensuring centering */
+   .video-container {
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 1rem; /* Added padding for internal spacing */
     }
 
-    .video-frame {
+    /* Decorative frame around the video */
+   .video-frame {
         position: relative;
         border-radius: 25px;
         overflow: hidden;
         box-shadow:
-            0 0 60px rgba(0, 212, 255, 0.4),
-            inset 0 0 60px rgba(0, 212, 255, 0.1);
+            0 0 35px rgba(0, 212, 255, 0.5), /* Reduced spread, increased opacity for a tighter glow */
+            inset 0 0 35px rgba(0, 212, 255, 0.15); /* Reduced spread, increased opacity for internal glow */
         background: linear-gradient(
             45deg,
-            rgba(0, 212, 255, 0.1),
-            rgba(155, 89, 182, 0.1)
+            rgba(0, 212, 255, 0.08), /* Slightly lower opacity for a more ethereal look */
+            rgba(155, 89, 182, 0.08)
         );
+        transition: all 0.4s ease; /* Smooth transition for hover effects */
     }
 
-    .video-frame::before {
+    /* Scanline effect over the video frame */
+   .video-frame::before {
         content: "";
         position: absolute;
         top: 0;
@@ -236,13 +260,14 @@ Assessment{% endblock %} {% block head %}
         background: linear-gradient(
             90deg,
             transparent,
-            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.05), /* Reduced opacity for a very subtle scanline */
             transparent
         );
-        animation: scanLine 3s infinite;
+        animation: scanLine 4s infinite linear; /* Slower, more subtle scanline */
         z-index: 2;
     }
 
+    /* Keyframe animation for the scanline */
     @keyframes scanLine {
         0% {
             left: -100%;
@@ -252,76 +277,84 @@ Assessment{% endblock %} {% block head %}
         }
     }
 
+    /* The actual media element (video/image) */
     #mediaElement {
         width: 100%;
-        max-width: 500px;
+        max-width: 600px;
         height: auto;
-        max-height: 400px;
+        max-height: 500px;
         border-radius: 25px;
         display: block;
         object-fit: cover;
-        border: 3px solid rgba(0, 212, 255, 0.3);
+        border: 2px solid rgba(0, 212, 255, 0.4); /* Slightly thicker, more opaque border */
         transition: all 0.5s ease;
-        filter: brightness(1.1) contrast(1.1) saturate(1.2);
+        filter: brightness(1.05) contrast(1.05) saturate(1.1); /* More subtle initial filter */
         position: relative;
         z-index: 1;
     }
 
+    /* Hover effects for the media element */
     #mediaElement:hover {
-        border-color: rgba(0, 212, 255, 0.8);
+        border-color: rgba(0, 212, 255, 0.9); /* Stronger border on hover */
         box-shadow:
-            0 0 40px rgba(0, 212, 255, 0.6),
-            inset 0 0 40px rgba(0, 212, 255, 0.1);
+            0 0 30px rgba(0, 212, 255, 0.7), /* Tighter, more intense glow on hover */
+            inset 0 0 30px rgba(0, 212, 255, 0.2);
         transform: scale(1.02);
-        filter: brightness(1.2) contrast(1.2) saturate(1.3);
+        filter: brightness(1.1) contrast(1.1) saturate(1.15); /* More subtle filter increase on hover */
     }
 
-    .hologram-grid {
+    /* Holographic grid overlay */
+   .hologram-grid {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         background-image: linear-gradient(
-                rgba(0, 212, 255, 0.1) 1px,
+                rgba(0, 212, 255, 0.05) 1px, /* Reduced opacity for very subtle grid lines */
                 transparent 1px
             ),
-            linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
-        background-size: 20px 20px;
-        animation: gridMove 4s infinite linear;
+            linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+        background-size: 25px 25px; /* Slightly larger grid cells for less density */
+        animation: gridMove 5s infinite linear; /* Slower grid movement */
         pointer-events: none;
         border-radius: 25px;
         z-index: 2;
     }
 
+    /* Keyframe animation for grid movement */
     @keyframes gridMove {
         0% {
             background-position: 0 0;
         }
         100% {
-            background-position: 20px 20px;
+            background-position: 25px 25px; /* Matches new background-size */
         }
     }
 
-    .corner-decorations {
+    /* Corner decorations for a high-tech frame look */
+   .corner-decorations {
         position: absolute;
-        width: 30px;
-        height: 30px;
-        border: 3px solid #00d4ff;
+        width: 35px; /* Slightly larger for more presence */
+        height: 35px; /* Slightly larger */
+        border: 2px solid #00d4ff; /* Thinner border for a sharper look */
         z-index: 3;
+        box-shadow: 0 0 15px rgba(0, 212, 255, 0.6); /* Refined shadow for crispness */
     }
 
-    .corner-decorations::before,
-    .corner-decorations::after {
+    /* Pseudo-elements for corner details */
+   .corner-decorations::before,
+   .corner-decorations::after {
         content: "";
         position: absolute;
-        width: 15px;
-        height: 3px;
+        width: 18px; /* Slightly larger */
+        height: 2px; /* Thinner line */
         background: #00d4ff;
-        box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+        box-shadow: 0 0 8px rgba(0, 212, 255, 0.9); /* Tighter, more intense shadow for sharpness */
     }
 
-    .corner-top-left {
+    /* Specific positioning for top-left corner */
+   .corner-top-left {
         top: 15px;
         left: 15px;
         border-right: none;
@@ -329,18 +362,19 @@ Assessment{% endblock %} {% block head %}
         border-radius: 0 0 0 10px;
     }
 
-    .corner-top-left::before {
-        top: -3px;
-        left: -3px;
+   .corner-top-left::before {
+        top: -2px; /* Adjusted position for thinner line */
+        left: -2px; /* Adjusted position for thinner line */
     }
 
-    .corner-top-left::after {
-        top: -3px;
-        left: -3px;
+   .corner-top-left::after {
+        top: -2px; /* Adjusted position for thinner line */
+        left: -2px; /* Adjusted position for thinner line */
         transform: rotate(90deg);
     }
 
-    .corner-top-right {
+    /* Specific positioning for top-right corner */
+   .corner-top-right {
         top: 15px;
         right: 15px;
         border-left: none;
@@ -348,18 +382,19 @@ Assessment{% endblock %} {% block head %}
         border-radius: 0 0 10px 0;
     }
 
-    .corner-top-right::before {
-        top: -3px;
-        right: -3px;
+   .corner-top-right::before {
+        top: -2px;
+        right: -2px;
     }
 
-    .corner-top-right::after {
-        top: -3px;
-        right: -3px;
+   .corner-top-right::after {
+        top: -2px;
+        right: -2px;
         transform: rotate(90deg);
     }
 
-    .corner-bottom-left {
+    /* Specific positioning for bottom-left corner */
+   .corner-bottom-left {
         bottom: 15px;
         left: 15px;
         border-right: none;
@@ -367,18 +402,19 @@ Assessment{% endblock %} {% block head %}
         border-radius: 10px 0 0 0;
     }
 
-    .corner-bottom-left::before {
-        bottom: -3px;
-        left: -3px;
+   .corner-bottom-left::before {
+        bottom: -2px;
+        left: -2px;
     }
 
-    .corner-bottom-left::after {
-        bottom: -3px;
-        left: -3px;
+   .corner-bottom-left::after {
+        bottom: -2px;
+        left: -2px;
         transform: rotate(90deg);
     }
 
-    .corner-bottom-right {
+    /* Specific positioning for bottom-right corner */
+   .corner-bottom-right {
         bottom: 15px;
         right: 15px;
         border-left: none;
@@ -386,60 +422,64 @@ Assessment{% endblock %} {% block head %}
         border-radius: 0 10px 0 0;
     }
 
-    .corner-bottom-right::before {
-        bottom: -3px;
-        right: -3px;
+   .corner-bottom-right::before {
+        bottom: -2px;
+        right: -2px;
     }
 
-    .corner-bottom-right::after {
-        bottom: -3px;
-        right: -3px;
+   .corner-bottom-right::after {
+        bottom: -2px;
+        right: -2px;
         transform: rotate(90deg);
     }
 
-    .energy-particles {
+    /* Ambient energy particles for background dynamism */
+   .energy-particles {
         position: absolute;
-        width: 4px;
-        height: 4px;
+        width: 3px; /* Slightly smaller particles */
+        height: 3px; /* Slightly smaller particles */
         background: #00d4ff;
         border-radius: 50%;
-        box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
-        animation: float 3s infinite ease-in-out;
+        box-shadow: 0 0 8px rgba(0, 212, 255, 0.7); /* Reduced spread, increased opacity for a softer glow */
+        animation: float 4s infinite ease-in-out; /* Slower, more ethereal float animation */
+        opacity: 0.6; /* Lower base opacity for subtlety */
     }
 
-    .particle-1 {
+    /* Individual particle positioning and animation delays */
+   .particle-1 {
         top: 20%;
         left: 10%;
         animation-delay: 0s;
     }
 
-    .particle-2 {
+   .particle-2 {
         top: 30%;
         right: 15%;
-        animation-delay: 0.5s;
+        animation-delay: 0.8s; /* Increased delay for more variation */
     }
 
-    .particle-3 {
+   .particle-3 {
         bottom: 25%;
         left: 20%;
-        animation-delay: 1s;
+        animation-delay: 1.6s; /* Increased delay */
     }
 
-    .particle-4 {
+   .particle-4 {
         bottom: 35%;
         right: 10%;
-        animation-delay: 1.5s;
+        animation-delay: 2.4s; /* Increased delay */
     }
 
+    /* Keyframe animation for floating particles */
     @keyframes float {
         0%,
         100% {
             transform: translateY(0) scale(1);
-            opacity: 0.7;
+            opacity: 0.6; /* Consistent with base opacity */
         }
         50% {
-            transform: translateY(-20px) scale(1.2);
-            opacity: 1;
+            transform: translateY(-15px) scale(1.1); /* Reduced float distance and scale */
+            opacity: 0.9; /* Slightly higher peak opacity */
         }
     }
 </style>
@@ -473,12 +513,11 @@ Assessment{% endblock %} {% block head %}
         <div class="ai-avatar-section">
             <div class="avatar-header">
                 <h2 class="avatar-title">
-                    <i class="fas fa-robot me-3"></i>
-                    Assistant IA
+                    SIRA - COMMERCIAL
                 </h2>
                 <div class="avatar-subtitle">
                     <div class="status-indicator"></div>
-                    Système Neural Activé
+                    Activé et prêt à vous aider
                 </div>
             </div>
 
@@ -514,7 +553,7 @@ Assessment{% endblock %} {% block head %}
                 <div class="spinner-border text-primary mb-3" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-                <h5>Analyse de votre CV...</h5>
+                <h5>Préparation...</h5>
                 <p class="text-muted">
                     Veuillez patienter pendant que nous analysons votre parcours
                     professionnel et préparons votre évaluation personnalisée.
@@ -529,7 +568,7 @@ Assessment{% endblock %} {% block head %}
             <div class="card-header">
                 <h4 class="mb-0">
                     <i class="fas fa-comments me-2"></i>
-                    Entretien d'Évaluation Professionnelle
+                    Entretien d'Évaluation 
                 </h4>
             </div>
             <div class="card-body">
@@ -598,10 +637,9 @@ Assessment{% endblock %} {% block head %}
         <div class="card" id="completion-screen" style="display: none">
             <div class="card-body text-center py-5">
                 <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
-                <h3>Assessment Complete!</h3>
+                <h3>Entretirn terminé!</h3>
                 <p class="text-muted mb-4">
-                    Thank you for completing the assessment. We're now
-                    generating your personalized professional report.
+                    Merci pour terminer l'entretien. Nous sommes entrain de générer votre bilan.
                 </p>
                 <div class="d-flex justify-content-center gap-3">
                     <button class="btn btn-primary" id="generate-report-btn">
@@ -611,7 +649,7 @@ Assessment{% endblock %} {% block head %}
                         href="{{ url_for('main.new_assessment') }}"
                         class="btn btn-secondary"
                     >
-                        <i class="fas fa-plus me-2"></i>New Assessment
+                        <i class="fas fa-plus me-2"></i>nouvelle évaluation
                     </a>
                 </div>
             </div>

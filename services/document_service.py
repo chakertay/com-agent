@@ -94,7 +94,7 @@ def generate_assessment_report(cv_analysis: dict, qa_pairs: list, summary: str, 
         story = []
 
         # ========== Title ==========
-        story.append(Paragraph("Bilan Sira", title_style))
+        story.append(Paragraph("Bilan Sira commercial", title_style))
         story.append(Spacer(1, 12))
         story.append(Paragraph(f"Généré le : {datetime.now().strftime('%d %B %Y')}", body_style))
         story.append(Spacer(1, 24))
