@@ -145,9 +145,9 @@ async function createHeygenSession() {
         },
         body: JSON.stringify({
             quality: "high",
-            avatar_name: "Graham_Chair_Sitting_public",
+            avatar_name: "Marianne_Chair_Sitting_public",
             voice: {
-                voice_id: "90bab79483c242d7b4487e5708db6744",
+                voice_id: "728ce6e94304471fae9cf02ad85ec9a2",
                 rate: 1.0,
             },
             version: "v2",
